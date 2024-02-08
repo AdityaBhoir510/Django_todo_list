@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+	<title>Todo List</title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	{% block style %}
+	{% endblock style %}	
+</head>
+
+<body>
+	<div class="container">
+		<h1>Todo List</h1>
+		<form action="/todo" method="post">
+			{% csrf_token %}
+			<input type="text" name="task" placeholder="Add todo..." required>
+			<input type="submit" value="Add" id="add">
+		</form>
+		<ul id="todos">
+			{% for x in data %}
+			<li>
+				<span class="text do{{x.id}}">{{x.task}}</span>
+				{% block dos %}
+				{% endblock dos %}
+				<div class="right">
+					<div class="datetime">
+						<span id="date">22/10/22</span>
+						<span id="time">12:25AM</span>
+					</div>
+					<div id="btn">
+						<button><a href="/edit/{{x.id}}">✏️</a></button>
+						<button id="del"><a href="/delete/{{x.id}}">❌</a></button>
+					</div>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<script src="{% static 'js/main.js' %}"></script>
+	
+	{% block scripts %}
+	{% endblock scripts %}
+		
+</body>
+
+</html>

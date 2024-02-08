@@ -1,0 +1,31 @@
+{% extends 'todo.html' %}
+
+{% block style %}
+    <style>
+        .edit_form{
+            display: none;
+        }
+    </style>
+{% endblock style %}
+
+{% block dos %}
+<form action="/edit/{{x.id}}" method="post" id="edit_{{x.id}}" class="edit_form" name="edit">
+    {% csrf_token %}
+    <input type="text" id="edit_input{{x.id}}" value="{{x.task}}" name="task">
+    <input type="submit" value="Update">
+</form>
+{% endblock dos %}
+
+{% block scripts %}
+<script>
+    var dos = document.querySelector('.do{{editid}}')
+    var form = document.querySelector('#edit_{{editid}}')
+    var input = document.querySelector('#edit_input{{editid}}')
+    dos.style.display = "none"
+    form.style.display = "block"
+    input.focus()
+    let end = input.value.length
+    input.setSelectionRange(end,end)
+    // console.log(input.value.length)
+</script>
+{% endblock scripts %}

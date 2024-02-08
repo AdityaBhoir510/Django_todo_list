@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>TODO REGISTER Form</title>
+	<link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body style="background-color: palevioletred;">
+    <h2>TODO REGISTER</h2>
+	<form action="register" method="get">
+        {% csrf_token %}
+		<label for="uname"><b>Username</b></label>
+		<input type="text" placeholder="Enter Username" name="uname" required>
+		<label for="uname"><b>Email</b></label>
+		<input type="email" placeholder="Enter Email" name="email" required>
+		<label for="psw"><b>Password</b></label>
+		<input type="password" placeholder="Enter Password" name="psw" required>
+		<button type="submit">Login</button>
+	</form>
+</body>
+</html>
